@@ -1,5 +1,6 @@
 package candidatura;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
@@ -14,6 +15,12 @@ public class ProcessoSeletivo {
         
         System.out.println("\n-- Imprimir Selecionados --");
         imprimirSelecionados();
+        
+        String[] candidatos = {"Maria", "João", "Ana", "Pedro", "Clara", "Lucas", "Isabella", "Bruno", "Carolina", "Gustavo"};
+        for (String candidato : candidatos) {
+            entrandoEmContato(candidato);
+        }
+        
 	}
 
 	private static void imprimirSelecionados() {
@@ -62,6 +69,34 @@ public class ProcessoSeletivo {
             System.out.println("LIGAR PARA O CANDIDATO COM CONTRAPROPOSTA");
         }else {
             System.out.println("AGUARDANDO DEMAIS CANDIDATOS");
+        }
+		
+	}
+	
+	static boolean atender() {
+        return new Random().nextInt(3)==1;
+    }
+	
+	static void entrandoEmContato(String candidato) {
+		
+		int tentativasRealizadas = 1;
+        boolean continuaTentando = true;
+        boolean atendeu = false;
+        
+        do {
+            atendeu = atender();
+            continuaTentando = !atendeu;
+            if(continuaTentando) {
+                tentativasRealizadas++;
+            }else {
+                System.out.println("Contato realizado com sucesso!");
+            }
+        } while(continuaTentando && tentativasRealizadas < 3);
+        
+        if(atendeu) {
+            System.out.println("Conseguimos o contato com " + candidato + " com " + tentativasRealizadas + " tentativas!");
+        }else {
+            System.out.println("NÃO conseguimos o contato com " + candidato + " com " + tentativasRealizadas + " tentativas!");
         }
 		
 	}
