@@ -44,7 +44,7 @@ public class ProcessoSeletivo {
 			String candidato = candidatos[candidatosAtual];
 			double salarioPretendido = valorPretendido();
 			
-			System.out.println("Candidato: " + candidato + " - valor: " + salarioPretendido);
+			System.out.printf("Candidato: %s    - valor: %.2f\n", candidato, salarioPretendido);
 
             if(salarioBase >= salarioPretendido) {
                 System.out.println(candidato + " selecionado para a vaga!");
